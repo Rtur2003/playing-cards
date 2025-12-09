@@ -1,34 +1,22 @@
-# Playing Cards Page
+﻿# Playing Cards Page
 
-A simple **playing cards page** built with HTML and CSS (Flexbox).  
-Displays multiple cards with left, middle, and right sections.
+A small RTL-friendly page that shows five sample playing cards with correct suits, semantic structure, and responsive styling.
 
 ## Features
-- At least three playing cards  
-- Flexbox layout for cards and card elements  
-- Responsive design with spacing between cards  
-- Middle section displays content in a column  
-- Card symbols: ♠, ♣, ♥, ♦
+- Semantic list-based deck with accessible `aria-label` on each card
+- Suit symbols rendered via HTML entities (`&spades;`, `&hearts;`, `&clubs;`, `&diams;`) and colored by `data-suit`
+- Responsive grid layout with design tokens for sizing, radius, and shadows
+- Focus-visible outlines for keyboard users plus hover lift for clarity
+- Persian heading and subtitle with Vazirmatn webfont
 
-## Technologies
-- HTML5  
-- CSS3 (Flexbox)
+## Structure
+- `index.html` - cards and layout markup
+- `style.css` - design tokens, grid, card styling, and accessibility states
+- `README.md` - project overview and usage
 
-## Folder Structure
-playing-cards/
-├─ index.html
-├─ style.css
-└─ README.md
+## Usage
+Open `index.html` in a browser. All assets are local except the Google Font reference included in the `<head>`.
 
-markdown
-Copy code
-
-## User Stories
-- `#playing-cards` uses flexbox  
-- `.card` uses flexbox with `justify-content: space-between`  
-- `.left` aligns start, `.middle` aligns center, `.right` aligns end  
-- Proper width, height, and flex-direction for all elements
-
-## 🔗 Demo
-View the project live on GitHub Pages:  
-[https://ahuraebrahimi.github.io/playing-cards/](https://ahuraebrahimi.github.io/playing-cards/)
+## Notes
+- Colors for hearts/diamonds are red; spades/clubs are dark ink
+- Card size scales with the viewport via CSS `clamp()` to remain legible on mobile
