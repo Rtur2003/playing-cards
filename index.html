@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -8,40 +8,100 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
 </head>
 <body>
+    <main class="page">
+        <section class="deck" aria-labelledby="deck-title">
+            <div class="deck__header">
+                <h1 id="deck-title">&#1705;&#1575;&#1585;&#1578;&zwnj;&#1607;&#1575;&#1740; &#1576;&#1575;&#1586;&#1740;</h1>
+                <p class="deck__subtitle">&#1662;&#1606;&#1580; &#1705;&#1575;&#1585;&#1578; &#1606;&#1605;&#1608;&#1606;&#1607; &#1576;&#1575; &#1582;&#1575;&#1604; &#1608; &#1585;&#1578;&#1576;&#1607; &#1575;&#1587;&#1578;&#1575;&#1606;&#1583;&#1575;&#1585;&#1583;.</p>
+            </div>
 
-    <main id="playing-cards">
+            <ul class="card-grid" role="list">
+                <li class="card" data-suit="spades" aria-label="&#1570;&#1587; &#1662;&#1740;&#1705;" tabindex="0">
+                    <div class="card__corner card__corner--top">
+                        <span class="card__rank">A</span>
+                        <span class="card__suit" aria-hidden="true">&spades;</span>
+                    </div>
 
-        <div class="card">
-            <div class="left">A<br>♠</div>
-            <div class="middle"><span class="number">A</span><span class="suit">♠</span></div>
-            <div class="right">♠<br>A</div>
-        </div>
+                    <div class="card__face" aria-hidden="true">
+                        <span class="card__rank card__rank--center">A</span>
+                        <span class="card__suit card__suit--center">&spades;</span>
+                    </div>
 
-        <div class="card">
-            <div class="left">K<br>♥</div>
-            <div class="middle"><span class="number">K</span><span class="suit">♥</span></div>
-            <div class="right">♥<br>K</div>
-        </div>
+                    <div class="card__corner card__corner--bottom" aria-hidden="true">
+                        <span class="card__rank">A</span>
+                        <span class="card__suit">&spades;</span>
+                    </div>
+                </li>
 
-        <div class="card">
-            <div class="left">10<br>♦</div>
-            <div class="middle"><span class="number">10</span><span class="suit">♦</span></div>
-            <div class="right">♦<br>10</div>
-        </div>
+                <li class="card" data-suit="hearts" aria-label="&#1588;&#1575;&#1607; &#1583;&#1604;" tabindex="0">
+                    <div class="card__corner card__corner--top">
+                        <span class="card__rank">K</span>
+                        <span class="card__suit" aria-hidden="true">&hearts;</span>
+                    </div>
 
-        <div class="card">
-            <div class="left">J<br>♣</div>
-            <div class="middle"><span class="number">J</span><span class="suit">♣</span></div>
-            <div class="right">♣<br>J</div>
-        </div>
+                    <div class="card__face" aria-hidden="true">
+                        <span class="card__rank card__rank--center">K</span>
+                        <span class="card__suit card__suit--center">&hearts;</span>
+                    </div>
 
-        <div class="card">
-            <div class="left">Q<br>♥</div>
-            <div class="middle"><span class="number">Q</span><span class="suit">♥</span></div>
-            <div class="right">♥<br>Q</div>
-        </div>
+                    <div class="card__corner card__corner--bottom" aria-hidden="true">
+                        <span class="card__rank">K</span>
+                        <span class="card__suit">&hearts;</span>
+                    </div>
+                </li>
 
+                <li class="card" data-suit="clubs" aria-label="&#1583;&#1607; &#1582;&#1575;&#1580;" tabindex="0">
+                    <div class="card__corner card__corner--top">
+                        <span class="card__rank">10</span>
+                        <span class="card__suit" aria-hidden="true">&clubs;</span>
+                    </div>
+
+                    <div class="card__face" aria-hidden="true">
+                        <span class="card__rank card__rank--center">10</span>
+                        <span class="card__suit card__suit--center">&clubs;</span>
+                    </div>
+
+                    <div class="card__corner card__corner--bottom" aria-hidden="true">
+                        <span class="card__rank">10</span>
+                        <span class="card__suit">&clubs;</span>
+                    </div>
+                </li>
+
+                <li class="card" data-suit="diamonds" aria-label="&#1587;&#1585;&#1576;&#1575;&#1586; &#1582;&#1588;&#1578;" tabindex="0">
+                    <div class="card__corner card__corner--top">
+                        <span class="card__rank">J</span>
+                        <span class="card__suit" aria-hidden="true">&diams;</span>
+                    </div>
+
+                    <div class="card__face" aria-hidden="true">
+                        <span class="card__rank card__rank--center">J</span>
+                        <span class="card__suit card__suit--center">&diams;</span>
+                    </div>
+
+                    <div class="card__corner card__corner--bottom" aria-hidden="true">
+                        <span class="card__rank">J</span>
+                        <span class="card__suit">&diams;</span>
+                    </div>
+                </li>
+
+                <li class="card" data-suit="hearts" aria-label="&#1576;&#1740;&zwnj;&#1576;&#1740; &#1583;&#1604;" tabindex="0">
+                    <div class="card__corner card__corner--top">
+                        <span class="card__rank">Q</span>
+                        <span class="card__suit" aria-hidden="true">&hearts;</span>
+                    </div>
+
+                    <div class="card__face" aria-hidden="true">
+                        <span class="card__rank card__rank--center">Q</span>
+                        <span class="card__suit card__suit--center">&hearts;</span>
+                    </div>
+
+                    <div class="card__corner card__corner--bottom" aria-hidden="true">
+                        <span class="card__rank">Q</span>
+                        <span class="card__suit">&hearts;</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
     </main>
-
 </body>
 </html>
