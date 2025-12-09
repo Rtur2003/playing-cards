@@ -1,75 +1,155 @@
+﻿:root {
+    --bg-start: #a1c4fd;
+    --bg-end: #c2e9fb;
+    --card-width: clamp(150px, 18vw, 190px);
+    --card-height: clamp(220px, 26vw, 260px);
+    --card-radius: 14px;
+    --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    --card-border: #1f2937;
+    --ink: #111827;
+    --muted: #475569;
+    --red: #c1121f;
+    --focus: #2563eb;
+    --transition: 160ms ease-out;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    background: linear-gradient(120deg, var(--bg-start), var(--bg-end));
+    color: var(--ink);
+}
+
+.page {
+    width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 24px;
+}
+
+.deck {
+    width: min(1100px, 100%);
+}
+
+.deck__header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.deck__header h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+.deck__subtitle {
     margin: 0;
-    font-family: 'Vazirmatn', Tahoma, sans-serif;
-    background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+    color: var(--muted);
+    font-size: 16px;
 }
 
-/* Container کارت‌ها */
-#playing-cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 90%;
-    padding: 20px;
+.card-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+    gap: 24px;
+    justify-items: center;
 }
 
-/* استایل کارت‌ها */
 .card {
-    width: 150px;
-    height: 220px;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    padding: 10px;
+    width: var(--card-width);
+    height: var(--card-height);
+    background: #fff;
+    border: 2px solid var(--card-border);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 20px;
-    transition: 0.3s ease;
+    padding: 14px;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    color: var(--ink);
+    outline: none;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
 }
 
-/* بخش‌ها */
-.left { align-self: flex-start; font-weight: bold; line-height: 0.9; }
-.middle { 
-    align-self: center; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    font-size: 80px;
-}
-.right { 
-    align-self: flex-end; 
-    font-weight: bold; 
-    line-height: 0.9; 
-    transform: rotate(180deg); 
+.card:focus-visible {
+    border-color: var(--focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18), var(--card-shadow);
 }
 
-/* بخش داخلی middle */
-.middle .number { font-size: 50px; font-weight: bold; }
-.middle .suit { font-size: 40px; margin-top: 5px; }
+.card__corner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-weight: 700;
+    line-height: 1;
+}
 
-/* رنگ خال‌ها */
-.card:nth-child(2) .left,
-.card:nth-child(2) .right,
-.card:nth-child(2) .middle,
-.card:nth-child(3) .left,
-.card:nth-child(3) .right,
-.card:nth-child(3) .middle,
-.card:nth-child(5) .left,
-.card:nth-child(5) .right,
-.card:nth-child(5) .middle {
-    color: red;
+.card__corner--bottom {
+    align-self: flex-end;
+    transform: rotate(180deg);
+}
+
+.card__face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.card__rank {
+    font-size: 24px;
+}
+
+.card__rank--center {
+    font-size: 56px;
+    line-height: 1;
+}
+
+.card__suit {
+    font-size: 22px;
+}
+
+.card__suit--center {
+    font-size: 44px;
+}
+
+.card[data-suit="hearts"],
+.card[data-suit="diamonds"] {
+    color: var(--red);
+    border-color: #e11d48;
+}
+
+.card[data-suit="spades"],
+.card[data-suit="clubs"] {
+    color: var(--ink);
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding: 24px 16px;
+    }
+
+    .card-grid {
+        gap: 16px;
+    }
 }
