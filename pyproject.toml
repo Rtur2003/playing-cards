@@ -1,0 +1,29 @@
+[project]
+name = "playing-cards"
+version = "1.0.0"
+description = "Professional playing cards display with Python-based validation tooling"
+authors = [
+    {name = "Rtur2003", email = "111705644+Rtur2003@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "html5lib>=1.1",
+    "cssutils>=2.6.0",
+    "pre-commit>=3.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
