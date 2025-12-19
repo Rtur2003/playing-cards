@@ -7,6 +7,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Python files to check in validation
+PYTHON_FILES = ["validators/", "validate.py", "setup_dev.py", "build.py"]
+
 
 def run_step(name, command, required=True):
     """
@@ -55,16 +58,17 @@ def build():
     print("Playing Cards - Build Pipeline")
     print("=" * 60)
 
+    python_files_str = " ".join(PYTHON_FILES)
     steps = [
         ("HTML Validation", "python validate.py", True),
         (
             "Python Code Format Check",
-            "python -m black --check validators/ validate.py setup_dev.py",
+            f"python -m black --check {python_files_str}",
             False,
         ),
         (
             "Python Import Order Check",
-            "python -m isort --check validators/ validate.py setup_dev.py",
+            f"python -m isort --check {python_files_str}",
             False,
         ),
     ]
