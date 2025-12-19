@@ -6,50 +6,50 @@ Orchestrates HTML and CSS validation with Python-first approach.
 import sys
 from pathlib import Path
 
-from validators.html_validator import validate_html_files
 from validators.css_validator import validate_css_files
+from validators.html_validator import validate_html_files
 
 
 def run_validations(directory="."):
     """
     Run all validations on project files.
-    
+
     Args:
         directory: Root directory to validate
-        
+
     Returns:
         bool: True if all validations pass
     """
     print("=" * 60)
     print("Playing Cards - Python Validation Suite")
     print("=" * 60)
-    
+
     all_valid = True
-    
+
     print("\n[HTML Validation]")
     html_results = validate_html_files(directory)
-    
+
     for filepath, result in html_results.items():
-        if result['valid']:
+        if result["valid"]:
             print(f"  ✓ {filepath}")
         else:
             print(f"  ✗ {filepath}")
-            for error in result['errors']:
+            for error in result["errors"]:
                 print(f"    - {error}")
             all_valid = False
-    
+
     print("\n[CSS Validation]")
     css_results = validate_css_files(directory)
-    
+
     for filepath, result in css_results.items():
-        if result['valid']:
+        if result["valid"]:
             print(f"  ✓ {filepath}")
         else:
             print(f"  ✗ {filepath}")
-            for error in result['errors']:
+            for error in result["errors"]:
                 print(f"    - {error}")
             all_valid = False
-    
+
     print("\n" + "=" * 60)
     if all_valid:
         print("✓ All validations passed")

@@ -13,11 +13,7 @@ def run_command(cmd, description):
     print(f"\n→ {description}...")
     try:
         result = subprocess.run(
-            cmd,
-            shell=True,
-            capture_output=True,
-            text=True,
-            check=True
+            cmd, shell=True, capture_output=True, text=True, check=True
         )
         print(f"  ✓ {description} completed")
         return True
@@ -43,21 +39,21 @@ def setup_environment():
     print("=" * 60)
     print("Playing Cards - Developer Setup")
     print("=" * 60)
-    
+
     if not check_python_version():
         return False
-    
+
     steps = [
         ("pip install --upgrade pip", "Upgrade pip"),
         ("pip install -r requirements-dev.txt", "Install development dependencies"),
         ("pre-commit install", "Install pre-commit hooks"),
     ]
-    
+
     for cmd, description in steps:
         if not run_command(cmd, description):
             print("\n✗ Setup failed")
             return False
-    
+
     print("\n" + "=" * 60)
     print("✓ Development environment ready")
     print("=" * 60)
