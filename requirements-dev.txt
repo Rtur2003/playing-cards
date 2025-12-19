@@ -1,0 +1,17 @@
+# Development dependencies for playing-cards project
+# Python-first validation and tooling
+
+# HTML validation
+html5lib>=1.1
+
+# CSS validation
+cssutils>=2.6.0
+
+# Pre-commit hooks
+pre-commit>=3.0.0
+
+# Code formatting
+black>=23.0.0
+
+# Import sorting
+isort>=5.12.0
