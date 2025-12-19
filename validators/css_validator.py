@@ -9,15 +9,14 @@ from pathlib import Path
 
 import cssutils
 
-cssutils.log.setLevel(logging.CRITICAL)
 
-
-def validate_css(filepath):
+def validate_css(filepath, log_level=logging.CRITICAL):
     """
     Validate a CSS file for syntax correctness.
 
     Args:
         filepath: Path to CSS file
+        log_level: Logging level for cssutils (default: CRITICAL)
 
     Returns:
         tuple: (is_valid, errors_list)
@@ -28,6 +27,7 @@ def validate_css(filepath):
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
 
+        cssutils.log.setLevel(log_level)
         parser = cssutils.CSSParser(raiseExceptions=False)
         sheet = parser.parseString(content)
 
