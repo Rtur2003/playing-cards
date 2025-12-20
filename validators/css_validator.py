@@ -6,11 +6,14 @@ Validates CSS files for syntax correctness.
 import logging
 import sys
 from pathlib import Path
+from typing import Dict, List, Tuple
 
 import cssutils
 
 
-def validate_css(filepath, log_level=logging.CRITICAL):
+def validate_css(
+    filepath: str, log_level: int = logging.CRITICAL
+) -> Tuple[bool, List[str]]:
     """
     Validate a CSS file for syntax correctness.
 
@@ -21,7 +24,7 @@ def validate_css(filepath, log_level=logging.CRITICAL):
     Returns:
         tuple: (is_valid, errors_list)
     """
-    errors = []
+    errors: List[str] = []
 
     # Input validation: ensure filepath is provided and valid
     if not filepath:
@@ -65,7 +68,7 @@ def validate_css(filepath, log_level=logging.CRITICAL):
         return False, errors
 
 
-def validate_css_files(directory="."):
+def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
     """
     Validate all CSS files in a directory.
 
@@ -75,7 +78,7 @@ def validate_css_files(directory="."):
     Returns:
         dict: Validation results per file
     """
-    results = {}
+    results: Dict[str, Dict[str, any]] = {}
     css_files = list(Path(directory).glob("*.css"))
 
     for css_file in css_files:
