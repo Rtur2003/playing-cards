@@ -79,7 +79,7 @@ def validate_html_files(directory: str = ".") -> Dict[str, Dict[str, Any]]:
     html_files = find_files_by_extension(directory, "html")
 
     for html_file in html_files:
-        is_valid, errors = validate_html(html_file)
+        is_valid, errors = validate_html(str(html_file))
         results[str(html_file)] = {"valid": is_valid, "errors": errors}
 
     return results

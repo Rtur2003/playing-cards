@@ -84,7 +84,7 @@ def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, Any]]:
     css_files = find_files_by_extension(directory, "css")
 
     for css_file in css_files:
-        is_valid, errors = validate_css(css_file)
+        is_valid, errors = validate_css(str(css_file))
         results[str(css_file)] = {"valid": is_valid, "errors": errors}
 
     return results

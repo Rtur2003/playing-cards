@@ -5,7 +5,7 @@ Orchestrates HTML and CSS validation with Python-first approach.
 """
 import sys
 from pathlib import Path
-from typing import Dict
+from typing import Any, Dict
 
 from validators.css_validator import validate_css_files
 from validators.html_validator import validate_html_files
@@ -28,7 +28,7 @@ def run_validations(directory: str = ".") -> bool:
     all_valid = True
 
     print("\n[HTML Validation]")
-    html_results: Dict[str, Dict] = validate_html_files(directory)
+    html_results: Dict[str, Dict[str, Any]] = validate_html_files(directory)
 
     for filepath, result in html_results.items():
         if result["valid"]:
@@ -40,7 +40,7 @@ def run_validations(directory: str = ".") -> bool:
             all_valid = False
 
     print("\n[CSS Validation]")
-    css_results: Dict[str, Dict] = validate_css_files(directory)
+    css_results: Dict[str, Dict[str, Any]] = validate_css_files(directory)
 
     for filepath, result in css_results.items():
         if result["valid"]:
