@@ -26,7 +26,7 @@ def validate_html(filepath: str) -> Tuple[bool, List[str]]:
     errors: List[str] = []
 
     # Input validation: ensure filepath is provided and valid
-    if not filepath or not filepath.strip():
+    if not filepath.strip():
         errors.append("Filepath cannot be empty")
         return False, errors
 
