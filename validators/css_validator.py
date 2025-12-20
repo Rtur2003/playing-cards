@@ -68,6 +68,9 @@ def validate_css(
         return False, errors
 
 
+from validators import find_files_by_extension
+
+
 def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
     """
     Validate all CSS files in a directory.
@@ -79,7 +82,7 @@ def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
         dict: Validation results per file
     """
     results: Dict[str, Dict[str, any]] = {}
-    css_files = list(Path(directory).glob("*.css"))
+    css_files = find_files_by_extension(directory, "css")
 
     for css_file in css_files:
         is_valid, errors = validate_css(css_file)

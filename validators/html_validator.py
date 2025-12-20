@@ -63,6 +63,9 @@ def validate_html(filepath: str) -> Tuple[bool, List[str]]:
         return False, errors
 
 
+from validators import find_files_by_extension
+
+
 def validate_html_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
     """
     Validate all HTML files in a directory.
@@ -74,7 +77,7 @@ def validate_html_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
         dict: Validation results per file
     """
     results: Dict[str, Dict[str, any]] = {}
-    html_files = list(Path(directory).glob("*.html"))
+    html_files = find_files_by_extension(directory, "html")
 
     for html_file in html_files:
         is_valid, errors = validate_html(html_file)
