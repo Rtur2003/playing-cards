@@ -29,7 +29,7 @@ def validate_css(
     errors: List[str] = []
 
     # Input validation: ensure filepath is provided and valid
-    if filepath == "" or (isinstance(filepath, str) and not filepath.strip()):
+    if not filepath or not filepath.strip():
         errors.append("Filepath cannot be empty")
         return False, errors
 
@@ -46,7 +46,7 @@ def validate_css(
             errors.append(f"Path is not a file: {filepath}")
             return False, errors
 
-        with open(path, "r", encoding="utf-8") as f:
+        with path.open("r", encoding="utf-8") as f:
             content = f.read()
 
         cssutils.log.setLevel(log_level)
