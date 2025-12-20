@@ -5,12 +5,13 @@ Validates HTML5 documents for structural correctness.
 
 import sys
 from pathlib import Path
+from typing import Dict, List, Tuple
 
 from html5lib import parse
 from html5lib.treewalkers import getTreeWalker
 
 
-def validate_html(filepath):
+def validate_html(filepath: str) -> Tuple[bool, List[str]]:
     """
     Validate an HTML file for well-formedness.
 
@@ -20,7 +21,7 @@ def validate_html(filepath):
     Returns:
         tuple: (is_valid, errors_list)
     """
-    errors = []
+    errors: List[str] = []
 
     # Input validation: ensure filepath is provided and valid
     if not filepath:
@@ -62,7 +63,7 @@ def validate_html(filepath):
         return False, errors
 
 
-def validate_html_files(directory="."):
+def validate_html_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
     """
     Validate all HTML files in a directory.
 
@@ -72,7 +73,7 @@ def validate_html_files(directory="."):
     Returns:
         dict: Validation results per file
     """
-    results = {}
+    results: Dict[str, Dict[str, any]] = {}
     html_files = list(Path(directory).glob("*.html"))
 
     for html_file in html_files:
