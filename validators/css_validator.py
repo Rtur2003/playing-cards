@@ -6,7 +6,7 @@ Validates CSS files for syntax correctness.
 import logging
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 import cssutils
 
@@ -70,7 +70,7 @@ def validate_css(
         return False, errors
 
 
-def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
+def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, Any]]:
     """
     Validate all CSS files in a directory.
 
@@ -80,7 +80,7 @@ def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
     Returns:
         dict: Validation results per file
     """
-    results: Dict[str, Dict[str, any]] = {}
+    results: Dict[str, Dict[str, Any]] = {}
     css_files = find_files_by_extension(directory, "css")
 
     for css_file in css_files:
