@@ -10,6 +10,8 @@ from typing import Dict, List, Tuple
 from html5lib import parse
 from html5lib.treewalkers import getTreeWalker
 
+from validators import find_files_by_extension
+
 
 def validate_html(filepath: str) -> Tuple[bool, List[str]]:
     """
@@ -61,9 +63,6 @@ def validate_html(filepath: str) -> Tuple[bool, List[str]]:
     except Exception as e:
         errors.append(f"Validation error: {str(e)}")
         return False, errors
-
-
-from validators import find_files_by_extension
 
 
 def validate_html_files(directory: str = ".") -> Dict[str, Dict[str, any]]:

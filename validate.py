@@ -7,7 +7,6 @@ import sys
 from pathlib import Path
 from typing import Dict
 
-from validators import find_files_by_extension
 from validators.css_validator import validate_css_files
 from validators.html_validator import validate_html_files
 

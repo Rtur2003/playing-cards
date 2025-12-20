@@ -10,6 +10,8 @@ from typing import Dict, List, Tuple
 
 import cssutils
 
+from validators import find_files_by_extension
+
 
 def validate_css(
     filepath: str, log_level: int = logging.CRITICAL
@@ -66,9 +68,6 @@ def validate_css(
     except Exception as e:
         errors.append(f"Validation error: {str(e)}")
         return False, errors
-
-
-from validators import find_files_by_extension
 
 
 def validate_css_files(directory: str = ".") -> Dict[str, Dict[str, any]]:
