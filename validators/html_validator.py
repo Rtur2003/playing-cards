@@ -22,8 +22,25 @@ def validate_html(filepath):
     """
     errors = []
 
+    # Input validation: ensure filepath is provided and valid
+    if not filepath:
+        errors.append("Filepath cannot be empty")
+        return False, errors
+
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
+        path = Path(filepath)
+
+        # Safety: check file exists before attempting to open
+        if not path.exists():
+            errors.append(f"File not found: {filepath}")
+            return False, errors
+
+        # Safety: verify it's a file, not a directory
+        if not path.is_file():
+            errors.append(f"Path is not a file: {filepath}")
+            return False, errors
+
+        with open(path, "r", encoding="utf-8") as f:
             content = f.read()
 
         doc = parse(content, treebuilder="etree", namespaceHTMLElements=False)
@@ -34,8 +51,11 @@ def validate_html(filepath):
 
         return True, []
 
-    except FileNotFoundError:
-        errors.append(f"File not found: {filepath}")
+    except PermissionError:
+        errors.append(f"Permission denied: {filepath}")
+        return False, errors
+    except UnicodeDecodeError:
+        errors.append(f"Invalid UTF-8 encoding in file: {filepath}")
         return False, errors
     except Exception as e:
         errors.append(f"Validation error: {str(e)}")
