@@ -29,7 +29,7 @@ def validate_css(
     errors: List[str] = []
 
     # Input validation: ensure filepath is provided and valid
-    if not filepath:
+    if filepath == "" or (isinstance(filepath, str) and not filepath.strip()):
         errors.append("Filepath cannot be empty")
         return False, errors
 
