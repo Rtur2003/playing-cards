@@ -29,6 +29,10 @@ htmlcov/
 .tox/
 .hypothesis/
 *.log
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
 
 # Virtual environments
 venv/

@@ -31,8 +31,8 @@ jobs:
       
       - name: Check Python code format
         run: |
-          black --check validators/ validate.py setup_dev.py build.py || true
+          black --check validators/ validate.py setup_dev.py build.py
       
       - name: Check Python imports
         run: |
-          isort --check validators/ validate.py setup_dev.py build.py || true
+          isort --check validators/ validate.py setup_dev.py build.py

@@ -5,12 +5,15 @@ Validates HTML5 documents for structural correctness.
 
 import sys
 from pathlib import Path
+from typing import Any, Dict, List, Tuple
 
 from html5lib import parse
 from html5lib.treewalkers import getTreeWalker
 
+from validators import find_files_by_extension
 
-def validate_html(filepath):
+
+def validate_html(filepath: str) -> Tuple[bool, List[str]]:
     """
     Validate an HTML file for well-formedness.
 
@@ -20,10 +23,27 @@ def validate_html(filepath):
     Returns:
         tuple: (is_valid, errors_list)
     """
-    errors = []
+    errors: List[str] = []
+
+    # Input validation: ensure filepath is provided and valid
+    if not filepath.strip():
+        errors.append("Filepath cannot be empty")
+        return False, errors
 
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
+        path = Path(filepath)
+
+        # Safety: check file exists before attempting to open
+        if not path.exists():
+            errors.append(f"File not found: {filepath}")
+            return False, errors
+
+        # Safety: verify it's a file, not a directory
+        if not path.is_file():
+            errors.append(f"Path is not a file: {filepath}")
+            return False, errors
+
+        with path.open("r", encoding="utf-8") as f:
             content = f.read()
 
         doc = parse(content, treebuilder="etree", namespaceHTMLElements=False)
@@ -34,15 +54,18 @@ def validate_html(filepath):
 
         return True, []
 
-    except FileNotFoundError:
-        errors.append(f"File not found: {filepath}")
+    except PermissionError:
+        errors.append(f"Permission denied: {filepath}")
+        return False, errors
+    except UnicodeDecodeError:
+        errors.append(f"Invalid UTF-8 encoding in file: {filepath}")
         return False, errors
     except Exception as e:
         errors.append(f"Validation error: {str(e)}")
         return False, errors
 
 
-def validate_html_files(directory="."):
+def validate_html_files(directory: str = ".") -> Dict[str, Dict[str, Any]]:
     """
     Validate all HTML files in a directory.
 
@@ -52,11 +75,11 @@ def validate_html_files(directory="."):
     Returns:
         dict: Validation results per file
     """
-    results = {}
-    html_files = list(Path(directory).glob("*.html"))
+    results: Dict[str, Dict[str, Any]] = {}
+    html_files = find_files_by_extension(directory, "html")
 
     for html_file in html_files:
-        is_valid, errors = validate_html(html_file)
+        is_valid, errors = validate_html(str(html_file))
         results[str(html_file)] = {"valid": is_valid, "errors": errors}
 
     return results

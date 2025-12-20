@@ -22,12 +22,12 @@ validate:
 	python validate.py
 
 format:
-	black validators/ validate.py
-	isort validators/ validate.py
+	black validators/ validate.py setup_dev.py build.py
+	isort validators/ validate.py setup_dev.py build.py
 
 lint:
-	black --check validators/ validate.py
-	isort --check validators/ validate.py
+	black --check validators/ validate.py setup_dev.py build.py
+	isort --check validators/ validate.py setup_dev.py build.py
 
 pre-commit:
 	pre-commit install
